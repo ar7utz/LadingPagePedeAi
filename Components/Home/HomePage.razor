@@ -1,0 +1,552 @@
+﻿@page "/homepage"
+
+@inject NavigationManager Navigation
+
+<PageTitle>Pede Aí | O Cardápio Digital Perfeito no WhatsApp</PageTitle>
+
+<div class="min-h-screen bg-[#FBF9F5] text-[#2C2A29] font-sans antialiased overflow-x-hidden selection:bg-[#FF6B35] selection:text-white">
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 bg-[#FBF9F5]/90 backdrop-blur-md border-b border-[#EADFC9]">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#FF6B35] to-[#FF8C61] flex items-center justify-[#center] shadow-md shadow-[#FF6B35]/20 text-white font-extrabold text-xl">
+                    P
+                </div>
+                <span class="text-2xl font-bold tracking-tight text-[#2C2A29]">Pede <span class="text-[#FF6B35]">Aí</span></span>
+            </div>
+
+            <!-- Links Desktop -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-[#5A5552]">
+                <a href="#como-funciona" class="hover:text-[#FF6B35] transition-colors">Como Funciona</a>
+                <a href="#demo" class="hover:text-[#FF6B35] transition-colors">Simulador</a>
+                <a href="#calculadora" class="hover:text-[#FF6B35] transition-colors">Economia</a>
+                <a href="#precos" class="hover:text-[#FF6B35] transition-colors">Planos</a>
+                <a href="#faq" class="hover:text-[#FF6B35] transition-colors">Dúvidas</a>
+            </div>
+
+            <!-- Ações -->
+            <div class="flex items-center gap-4">
+                <button class="hidden sm:block text-sm font-bold text-[#2C2A29] hover:text-[#FF6B35] transition-colors">
+                    Entrar
+                </button>
+                <a href="#demo" class="px-5 py-2.5 bg-[#FF6B35] hover:bg-[#E8551F] text-white font-semibold text-sm rounded-full shadow-lg shadow-[#FF6B35]/25 hover:shadow-xl transition-all duration-300">
+                    Criar Cardápio
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-20 md:py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Column: Copy -->
+            <div class="lg:col-span-7 space-y-8 text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E3EBD3] text-[#2D5A27] font-semibold text-xs uppercase tracking-wider">
+                    <span>✨ Sem taxas por pedido</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#2D5A27]"></span>
+                    <span>100% integrado ao WhatsApp</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl font-extrabold leading-[1.1] tracking-tight text-[#2C2A29]">
+                    Seu cardápio digital <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B35] via-[#2D5A27] to-[#FF6B35]">
+                        simples, direto no WhatsApp.
+                    </span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-[#5A5552] max-w-2xl font-normal leading-relaxed">
+                    Aumente o faturamento da sua hamburgueria, doceria ou lanchonete. O cliente escolhe, faz a conta no seu site e o pedido chega pronto no seu Zap.
+                </p>
+
+                <!-- Categorias selecionáveis em C# -->
+                <div class="flex flex-wrap gap-2 pt-2">
+                    @foreach (var cat in CategoriasHero)
+                    {
+                        <button @onclick="() => CategoriaSelecionada = cat.Nome" 
+                                class="px-4 py-2 rounded-full text-xs font-bold transition-all border @(CategoriaSelecionada == cat.Nome ? "bg-[#2C2A29] text-white border-[#2C2A29] shadow-md" : "bg-white text-[#5A5552] border-[#EADFC9] hover:border-[#FF6B35]")">
+                            @cat.Icone @cat.Nome
+                        </button>
+                    }
+                </div>
+
+                <!-- CTA Actions -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+                    <a href="#demo" class="px-8 py-4 bg-[#FF6B35] hover:bg-[#E8551F] text-white font-bold text-center rounded-2xl shadow-xl shadow-[#FF6B35]/30 hover:scale-105 transition-all duration-300">
+                        Testar na Prática Agora
+                    </a>
+                    <a href="#calculadora" class="px-8 py-4 bg-white hover:bg-[#F2ECE1] border border-[#EADFC9] text-[#2C2A29] font-bold text-center rounded-2xl transition-all duration-300">
+                        Calcular Minha Economia
+                    </a>
+                </div>
+
+                <!-- Social Proof -->
+                <div class="flex items-center gap-6 pt-6 border-t border-[#EADFC9]/60">
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-[#FF6B35] flex items-center justify-center text-white text-xs font-bold">🍔</div>
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-[#2D5A27] flex items-center justify-center text-white text-xs font-bold">🍕</div>
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-[#FFB800] flex items-center justify-center text-white text-xs font-bold">🍰</div>
+                    </div>
+                    <div>
+                        <div class="flex text-amber-500 text-sm">★★★★★</div>
+                        <p class="text-xs text-[#5A5552] font-medium">+1.400 estabelecimentos vendendo diariamente</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Interactive Hero Mockup -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <!-- Background Glow -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-[#FF6B35]/20 to-[#2D5A27]/20 rounded-full filter blur-3xl -z-10"></div>
+
+                <!-- Smartphone Frame -->
+                <div class="w-[320px] bg-[#2C2A29] rounded-[40px] p-4 shadow-2xl border-4 border-[#3A3836] relative">
+                    <!-- Notch -->
+                    <div class="w-32 h-4 bg-[#2C2A29] mx-auto rounded-b-xl mb-2"></div>
+                    
+                    <!-- App Interface inside Frame -->
+                    <div class="bg-white rounded-[28px] overflow-hidden min-h-[500px] flex flex-col justify-between text-left p-4">
+                        <div>
+                            <!-- Header do Estabelecimento -->
+                            <div class="flex items-center justify-between border-b pb-3 mb-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-2xl">
+                                        @(CategoriasHero.FirstOrDefault(c => c.Nome == CategoriaSelecionada)?.Icone ?? "🍔")
+                                    </span>
+                                    <div>
+                                        <h4 class="font-extrabold text-xs text-[#2C2A29]">Pede Aí - @CategoriaSelecionada</h4>
+                                        <span class="text-[10px] text-green-600 font-semibold">● Aberto Agora</span>
+                                    </div>
+                                </div>
+                                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">4.9 ★</span>
+                            </div>
+
+                            <!-- Item em Destaque baseado na Categoria -->
+                            <div class="bg-[#FBF9F5] p-3 rounded-xl border border-[#EADFC9] mb-3">
+                                <span class="text-xs text-[#FF6B35] font-bold">Destaque do Dia</span>
+                                <h5 class="font-bold text-sm text-[#2C2A29] mt-1">
+                                    @(CategoriaSelecionada switch {
+                                        "Hamburgueria" => "Smash Burger Duplo Premium",
+                                        "Doceria" => "Torta de Pistache com Morango",
+                                        "Pizzaria" => "Pizza Artesanal de Fermentação Natural",
+                                        "Japonesa" => "Combo Hot Roll + Temaki Especial",
+                                        _ => "Prato do Dia Especial"
+                                    })
+                                </h5>
+                                <p class="text-[11px] text-[#5A5552] mt-1">Ingredientes selecionados e entrega super rápida.</p>
+                                <div class="flex items-center justify-between mt-3">
+                                    <span class="text-sm font-extrabold text-[#2D5A27]">R$ 34,90</span>
+                                    <button class="bg-[#FF6B35] text-white text-xs font-bold px-3 py-1.5 rounded-lg">
+                                        + Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card de WhatsApp simulado -->
+                        <div class="bg-[#DCF8C6] p-3 rounded-xl border border-green-300 text-[11px] space-y-1">
+                            <div class="flex items-center justify-between text-green-800 font-bold">
+                                <span>💬 Mensagem no Zap</span>
+                                <span>Agora</span>
+                            </div>
+                            <p class="text-gray-700 font-mono text-[10px]">
+                                🛒 *Novo Pedido #1084*<br/>
+                                1x @(CategoriaSelecionada) Especial<br/>
+                                📍 *Entrega:* Rua das Flores, 123<br/>
+                                💰 *Total:* R$ 34,90
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SIMULADOR INTERATIVO COMPLETO (Visão Cliente -> WhatsApp -> Status) -->
+    <section id="demo" class="py-20 px-6 bg-white border-y border-[#EADFC9]">
+        <div class="max-w-6xl mx-auto text-center space-y-4 mb-12">
+            <span class="text-xs font-extrabold text-[#FF6B35] uppercase tracking-widest">A Experiência do Seu Cliente</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-[#2C2A29]">Experimente a simulação em tempo real</h2>
+            <p class="text-[#5A5552] max-w-2xl mx-auto">Veja como é fácil e rápido para o seu cliente pedir, enviar pro seu WhatsApp e acompanhar o status.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+            
+            <!-- Etapa 1: Carrinho -->
+            <div class="bg-[#FBF9F5] p-6 rounded-3xl border border-[#EADFC9] shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-8 h-8 rounded-full bg-[#FF6B35] text-white font-bold flex items-center justify-center text-sm">1</span>
+                        <span class="text-xs font-semibold text-[#FF6B35] bg-orange-100 px-2.5 py-1 rounded-full">Cliente no Celular</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-[#2C2A29] mb-2">Montando o Pedido</h3>
+                    
+                    <div class="space-y-3 my-4">
+                        @foreach (var item in ItensSimulador)
+                        {
+                            <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-[#EADFC9]/70 text-xs">
+                                <div>
+                                    <div class="font-bold text-[#2C2A29]">@item.Nome</div>
+                                    <div class="text-[#5A5552]">R$ @item.Preco.ToString("N2")</div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button @onclick="() => RemoverItem(item)" class="w-6 h-6 rounded-md bg-gray-100 font-bold hover:bg-gray-200 text-gray-700">-</button>
+                                    <span class="font-bold">@item.Quantidade</span>
+                                    <button @onclick="() => AdicionarItem(item)" class="w-6 h-6 rounded-md bg-[#FF6B35] text-white font-bold hover:bg-[#E8551F]">+</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-[#EADFC9]">
+                    <div class="flex justify-between items-center text-sm font-bold mb-4">
+                        <span>Total:</span>
+                        <span class="text-lg text-[#2D5A27]">R$ @TotalCarrinho.ToString("N2")</span>
+                    </div>
+                    <button @onclick="FinalizarPedidoSimulado" 
+                            disabled="@(TotalCarrinho == 0 || SimulaçãoEnviada)"
+                            class="w-full py-3 bg-[#FF6B35] disabled:bg-gray-300 hover:bg-[#E8551F] text-white font-bold rounded-xl transition-all shadow-md">
+                        @(SimulaçãoEnviada ? "Pedido Enviado ✓" : "Finalizar & Mandar Pro Zap")
+                    </button>
+                </div>
+            </div>
+
+            <!-- Etapa 2: WhatsApp Formated Message -->
+            <div class="bg-[#E5DDD5] p-6 rounded-3xl border border-emerald-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-8 h-8 rounded-full bg-[#25D366] text-white font-bold flex items-center justify-center text-sm">2</span>
+                        <span class="text-xs font-semibold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Recebido no Zap</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-[#2C2A29] mb-2">Mensagem Formatada</h3>
+
+                    <div class="bg-[#DCF8C6] p-4 rounded-2xl shadow-sm text-xs font-mono text-gray-800 space-y-2 mt-4 text-left border border-green-200">
+                        <div class="font-bold text-green-900 border-b border-green-300 pb-1">
+                            🔔 NOVO PEDIDO #PEDEAI-@(CodigoPedidoSimulado)
+                        </div>
+                        <div>
+                            <strong>Cliente:</strong> João Silva<br/>
+                            <strong>Tipo:</strong> Entrega 🛵
+                        </div>
+                        <div class="border-y border-green-300/50 py-1">
+                            @if (ItensSimulador.Any(i => i.Quantidade > 0))
+                            {
+                                @foreach (var item in ItensSimulador.Where(i => i.Quantidade > 0))
+                                {
+                                    <div>@item.Quantidade x @item.Nome (R$ @((item.Preco * item.Quantidade).ToString("N2")))</div>
+                                }
+                            }
+                            else
+                            {
+                                <span class="italic text-gray-500">Nenhum item selecionado</span>
+                            }
+                        </div>
+                        <div class="font-bold text-sm text-emerald-950">
+                            Total: R$ @TotalCarrinho.ToString("N2")
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 text-center">
+                    <p class="text-xs text-gray-600">Sem erros de digitação, pronto para ir para a cozinha!</p>
+                </div>
+            </div>
+
+            <!-- Etapa 3: Tracking de Status -->
+            <div class="bg-[#FBF9F5] p-6 rounded-3xl border border-[#EADFC9] shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-8 h-8 rounded-full bg-[#2D5A27] text-white font-bold flex items-center justify-center text-sm">3</span>
+                        <span class="text-xs font-semibold text-[#2D5A27] bg-[#E3EBD3] px-2.5 py-1 rounded-full">Painel de Acompanhamento</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-[#2C2A29] mb-2">Status em Tempo Real</h3>
+
+                    <div class="space-y-4 my-6 text-left">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full @(StatusEtapa >= 1 ? "bg-green-500 ring-4 ring-green-100" : "bg-gray-300")"></div>
+                            <span class="text-xs font-bold @(StatusEtapa >= 1 ? "text-[#2C2A29]" : "text-gray-400")">1. Pedido Recebido</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full @(StatusEtapa >= 2 ? "bg-amber-500 ring-4 ring-amber-100" : "bg-gray-300")"></div>
+                            <span class="text-xs font-bold @(StatusEtapa >= 2 ? "text-[#2C2A29]" : "text-gray-400")">2. Em Preparação na Cozinha 👨‍🍳</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full @(StatusEtapa >= 3 ? "bg-blue-500 ring-4 ring-blue-100" : "bg-gray-300")"></div>
+                            <span class="text-xs font-bold @(StatusEtapa >= 3 ? "text-[#2C2A29]" : "text-gray-400")">3. Saiu para Entrega 🛵</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button @onclick="AvançarStatusSimulado" 
+                            disabled="@(!SimulaçãoEnviada || StatusEtapa >= 3)"
+                            class="w-full py-3 bg-[#2D5A27] disabled:bg-gray-300 hover:bg-[#1E3F1B] text-white font-bold rounded-xl transition-all">
+                        @(StatusEtapa >= 3 ? "Pedido Entregue! 🎉" : "Simular Avanço de Status")
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CALCULADORA DE ECONOMIA DA PLATAFORMA -->
+    <section id="calculadora" class="py-20 px-6 bg-[#FBF9F5]">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 md:p-12 border border-[#EADFC9] shadow-lg">
+            <div class="text-center space-y-3 mb-8">
+                <span class="text-xs font-bold text-[#2D5A27] bg-[#E3EBD3] px-3 py-1 rounded-full uppercase">Calculadora de Economia</span>
+                <h2 class="text-3xl font-extrabold text-[#2C2A29]">Quanto você perde pagando comissões?</h2>
+                <p class="text-sm text-[#5A5552]">Aplicativos tradicionais cobram de 12% a 27% por cada venda. Veja a diferença com o Pede Aí:</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold text-[#5A5552] uppercase mb-2">Faturamento Mensal Estimado:</label>
+                        <input type="range" min="3000" max="80000" step="1000" @bind="FaturamentoMensal" @bind:event="oninput" class="w-full accent-[#FF6B35] h-2 bg-gray-200 rounded-lg cursor-pointer" />
+                        <div class="text-2xl font-extrabold text-[#FF6B35] mt-2">R$ @FaturamentoMensal.ToString("N0") /mês</div>
+                    </div>
+
+                    <div class="bg-[#FBF9F5] p-4 rounded-xl border border-[#EADFC9] text-xs space-y-2">
+                        <div class="flex justify-between">
+                            <span>Taxa estimada de App Tradicional (15%):</span>
+                            <span class="font-bold text-red-500">R$ @CustoAppTradicional.ToString("N2")</span>
+                        </div>
+                        <div class="flex justify-between border-t border-[#EADFC9] pt-2">
+                            <span>Mensalidade Pede Aí (Plano Pro):</span>
+                            <span class="font-bold text-[#2D5A27]">R$ 89,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-[#2D5A27] to-[#1E3F1B] text-white p-6 rounded-2xl text-center space-y-3 shadow-xl">
+                    <span class="text-xs font-semibold uppercase text-[#E3EBD3]">Sua Economia Anual com o Pede Aí</span>
+                    <div class="text-4xl md:text-5xl font-extrabold text-amber-300">
+                        R$ @EconomiaAnual.ToString("N0")
+                    </div>
+                    <p class="text-xs text-gray-200">Dinheiro no seu bolso para reinvestir no seu negócio e não em comissões abusivas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREÇOS / PLANOS -->
+    <section id="precos" class="py-20 px-6 bg-white border-t border-[#EADFC9]">
+        <div class="max-w-6xl mx-auto text-center space-y-4 mb-12">
+            <span class="text-xs font-extrabold text-[#FF6B35] uppercase tracking-widest">Planos Transparentes</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-[#2C2A29]">Sem comissão por venda. Zero surpresas.</h2>
+            
+            <!-- Toggle Anual / Mensal -->
+            <div class="flex items-center justify-center gap-3 pt-4">
+                <span class="text-sm font-semibold @(!PlanoAnual ? "text-[#FF6B35]" : "text-gray-500")">Mensal</span>
+                <button @onclick="() => PlanoAnual = !PlanoAnual" class="w-14 h-8 bg-[#2C2A29] rounded-full p-1 transition-all">
+                    <div class="w-6 h-6 bg-white rounded-full transition-all @(PlanoAnual ? "translate-x-6 bg-[#FF6B35]" : "")"></div>
+                </button>
+                <span class="text-sm font-semibold @(PlanoAnual ? "text-[#FF6B35]" : "text-gray-500")">Anual <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">2 MESES GRÁTIS</span></span>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+            
+            <!-- Plano Start -->
+            <div class="bg-[#FBF9F5] p-8 rounded-3xl border border-[#EADFC9] space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-[#2C2A29]">Iniciante</h3>
+                    <p class="text-xs text-[#5A5552] mt-1">Ideal para quem está começando agora.</p>
+                </div>
+                <div class="text-3xl font-extrabold text-[#2C2A29]">
+                    R$ @(PlanoAnual ? "49" : "59")<span class="text-xs font-normal text-gray-500">/mês</span>
+                </div>
+                <ul class="text-xs text-[#5A5552] space-y-3">
+                    <li class="flex items-center gap-2">✓ Até 50 produtos cadastrados</li>
+                    <li class="flex items-center gap-2">✓ Pedidos ilimitados no WhatsApp</li>
+                    <li class="flex items-center gap-2">✓ Link e QR Code do Cardápio</li>
+                    <li class="flex items-center gap-2">✓ Painel de Login para Clientes</li>
+                </ul>
+                <button class="w-full py-3 border border-[#FF6B35] text-[#FF6B35] font-bold rounded-xl hover:bg-[#FF6B35] hover:text-white transition-all">Começar Agora</button>
+            </div>
+
+            <!-- Plano Pro (Destaque) -->
+            <div class="bg-[#2C2A29] text-white p-8 rounded-3xl border-2 border-[#FF6B35] space-y-6 relative shadow-2xl transform md:-translate-y-2">
+                <span class="absolute -top-3.5 right-6 bg-[#FF6B35] text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-full">Mais Popular</span>
+                <div>
+                    <h3 class="text-xl font-bold">Profissional</h3>
+                    <p class="text-xs text-gray-400 mt-1">Para estabelecimentos em crescimento constante.</p>
+                </div>
+                <div class="text-4xl font-extrabold text-white">
+                    R$ @(PlanoAnual ? "89" : "109")<span class="text-xs font-normal text-gray-400">/mês</span>
+                </div>
+                <ul class="text-xs text-gray-300 space-y-3">
+                    <li class="flex items-center gap-2">✓ Produtos ILIMITADOS</li>
+                    <li class="flex items-center gap-2">✓ Painel de Status do Pedido em Tempo Real</li>
+                    <li class="flex items-center gap-2">✓ Opção de Retirada e Entrega Flexível</li>
+                    <li class="flex items-center gap-2">✓ Relatórios de Vendas Básicos</li>
+                    <li class="flex items-center gap-2">✓ Suporte Prioritário no Zap</li>
+                </ul>
+                <button class="w-full py-3 bg-[#FF6B35] hover:bg-[#E8551F] text-white font-bold rounded-xl transition-all shadow-lg shadow-[#FF6B35]/30">Testar 7 Dias Grátis</button>
+            </div>
+
+            <!-- Plano Master -->
+            <div class="bg-[#FBF9F5] p-8 rounded-3xl border border-[#EADFC9] space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-[#2C2A29]">Franquia / Multi-lojas</h3>
+                    <p class="text-xs text-[#5A5552] mt-1">Para operações maiores ou redes de lojas.</p>
+                </div>
+                <div class="text-3xl font-extrabold text-[#2C2A29]">
+                    R$ @(PlanoAnual ? "179" : "199")<span class="text-xs font-normal text-gray-500">/mês</span>
+                </div>
+                <ul class="text-xs text-[#5A5552] space-y-3">
+                    <li class="flex items-center gap-2">✓ Tudo do Plano Profissional</li>
+                    <li class="flex items-center gap-2">✓ Múltiplos Estabelecimentos</li>
+                    <li class="flex items-center gap-2">✓ Domínio Personalizado (.com.br)</li>
+                    <li class="flex items-center gap-2">✓ API e Integrações Customizadas</li>
+                </ul>
+                <button class="w-full py-3 border border-[#2C2A29] text-[#2C2A29] font-bold rounded-xl hover:bg-[#2C2A29] hover:text-white transition-all">Falar com Consultor</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ ACCORDION EM C# -->
+    <section id="faq" class="py-20 px-6 bg-[#FBF9F5]">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <div class="text-center space-y-2 mb-8">
+                <h2 class="text-3xl font-extrabold text-[#2C2A29]">Perguntas Frequentes</h2>
+                <p class="text-sm text-[#5A5552]">Tire suas dúvidas antes de começar</p>
+            </div>
+
+            <div class="space-y-3">
+                @foreach (var faq in ListaFaq)
+                {
+                    <div class="bg-white rounded-2xl border border-[#EADFC9] overflow-hidden transition-all">
+                        <button @onclick="() => ToggleFaq(faq.Id)" class="w-full p-5 text-left font-bold text-sm text-[#2C2A29] flex justify-between items-center">
+                            <span>@faq.Pergunta</span>
+                            <span class="text-lg font-mono">@(FaqAbertoId == faq.Id ? "−" : "+")</span>
+                        </button>
+                        @if (FaqAbertoId == faq.Id)
+                        {
+                            <div class="px-5 pb-5 text-xs text-[#5A5552] leading-relaxed border-t border-gray-100 pt-3">
+                                @faq.Resposta
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#2C2A29] text-white py-12 px-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-400">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-[#FF6B35] flex items-center justify-center font-bold text-white">P</div>
+                <span class="text-lg font-bold text-white">Pede Aí</span>
+            </div>
+            <div>
+                © @DateTime.Now.Year Pede Aí Tecnologia. Todos os direitos reservados.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-white">Termos</a>
+                <a href="#" class="hover:text-white">Privacidade</a>
+                <a href="#" class="hover:text-white">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+@code {
+    // Categorias do Hero
+    private string CategoriaSelecionada = "Hamburgueria";
+    private List<CategoriaItem> CategoriasHero = new()
+    {
+        new("Hamburgueria", "🍔"),
+        new("Doceria", "🍰"),
+        new("Pizzaria", "🍕"),
+        new("Japonesa", "🍣")
+    };
+
+    // Simulador de Pedido
+    private string CodigoPedidoSimulado = "9821";
+    private bool SimulaçãoEnviada = false;
+    private int StatusEtapa = 1;
+
+    private List<ItemSimulador> ItensSimulador = new()
+    {
+        new("X-Salada Especial", 26.90m, 1),
+        new("Coca-Cola Gelada 350ml", 7.00m, 1),
+        new("Batata Frita Rústica", 14.00m, 0)
+    };
+
+    private decimal TotalCarrinho => ItensSimulador.Sum(i => i.Preco * i.Quantidade);
+
+    private void AdicionarItem(ItemSimulador item) => item.Quantidade++;
+    private void RemoverItem(ItemSimulador item)
+    {
+        if (item.Quantidade > 0) item.Quantidade--;
+    }
+
+    private void FinalizarPedidoSimulado()
+    {
+        if (TotalCarrinho > 0)
+        {
+            SimulaçãoEnviada = true;
+            StatusEtapa = 1;
+        }
+    }
+
+    private void AvançarStatusSimulado()
+    {
+        if (StatusEtapa < 3) StatusEtapa++;
+    }
+
+    // Calculadora de Economia
+    private decimal FaturamentoMensal = 25000;
+    private decimal CustoAppTradicional => FaturamentoMensal * 0.15m;
+    private decimal EconomiaAnual => (CustoAppTradicional - 89.90m) * 12;
+
+    // Toggle de Planos
+    private bool PlanoAnual = true;
+
+    // FAQ Accordion Logic
+    private int? FaqAbertoId = 1;
+    private void ToggleFaq(int id)
+    {
+        FaqAbertoId = FaqAbertoId == id ? null : id;
+    }
+
+    // Models Internos
+    private record CategoriaItem(string Nome, string Icone);
+
+    private class ItemSimulador
+    {
+        public string Nome { get; set; }
+        public decimal Preco { get; set; }
+        public int Quantidade { get; set; }
+
+        public ItemSimulador(string nome, decimal preco, int quantidade)
+        {
+            Nome = nome;
+            Preco = preco;
+            Quantidade = quantidade;
+        }
+    }
+
+    private class FaqItem
+    {
+        public int Id { get; set; }
+        public string Pergunta { get; set; } = string.Empty;
+        public string Resposta { get; set; } = string.Empty;
+    }
+
+    private List<FaqItem> ListaFaq = new()
+    {
+        new FaqItem { Id = 1, Pergunta = "Preciso pagar comissão por cada pedido?", Resposta = "Não! No Pede Aí você paga apenas uma mensalidade fixa e nada mais. 100% do valor da venda é seu." },
+        new FaqItem { Id = 2, Pergunta = "O cliente precisa baixar algum aplicativo?", Resposta = "Não! O seu cliente acessa pelo navegador do celular através do seu link ou QR Code, escolhe os produtos e faz a conta de forma ultra rápida." },
+        new FaqItem { Id = 3, Pergunta = "Como o pedido chega no meu WhatsApp?", Resposta = "Quando o cliente clica em 'Finalizar Pedido', a mensagem é formatada automaticamente e enviada direto para o WhatsApp do seu estabelecimento com todos os detalhes e endereço." },
+        new FaqItem { Id = 4, Pergunta = "Como funciona o acompanhamento do pedido?", Resposta = "O cliente pode acessar o site do seu estabelecimento, criar uma conta e ver a atualização em tempo real se o pedido está sendo preparado, saiu para entrega ou se está pronto para retirada." }
+    };
+}
