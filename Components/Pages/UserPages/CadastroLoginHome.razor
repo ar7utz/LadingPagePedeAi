@@ -3,10 +3,10 @@
 @inject NavigationManager NavManager
 
 <div class="min-h-screen bg-neutral-100 p-4 flex items-center justify-center font-sans">
-    <div class="w-full max-w-6xl aspect-[16/10] bg-white rounded-3xl shadow-2xl flex overflow-hidden">
+    <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl flex flex-col lg:flex-row overflow-hidden lg:aspect-[16/10]">
         
         <!-- Painel Esquerdo (Escuro - Identico ao Login) -->
-        <div class="w-1/2 bg-[#1c1917] p-12 flex flex-col justify-between text-neutral-300">
+        <div class="hidden lg:flex lg:w-1/2 bg-[#1c1917] p-6 sm:p-8 lg:p-12 flex-col justify-between text-neutral-300">
             <div>
                 <p class="text-xs font-light tracking-wide opacity-80">
                     Sua comida favorita, entregue rápido – soluções de pedido online para você.
@@ -18,7 +18,7 @@
                 <div class="absolute w-96 h-96 rounded-full border border-neutral-700 opacity-30"></div>
                 <div class="absolute w-80 h-80 rounded-full border border-neutral-700 opacity-50"></div>
                 
-                <h1 class="text-white text-6xl font-extrabold leading-tight tracking-tight text-center mb-8 relative z-10">
+                <h1 class="text-white text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-center mb-8 relative z-10">
                     Crie sua<br/>conta grátis
                 </h1>
                 
@@ -38,8 +38,8 @@
         </div>
 
         <!-- Painel Direito (Claro - Formulário de Cadastro) -->
-        <div class="w-1/2 bg-white p-12 flex flex-col">
-            <div class="flex justify-between items-center mb-10">
+        <div class="w-full lg:w-1/2 bg-white p-6 sm:p-8 lg:p-12 flex flex-col">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-8 sm:mb-10">
                 <!-- Logo Pede Aí -->
                 <div class="flex items-center gap-2">
                     <div class="w-3 h-3 rounded-full bg-orange-500"></div>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="flex-grow flex flex-col justify-center max-w-md mx-auto w-full">
-                <h2 class="text-4xl font-bold text-neutral-950 mb-8 tracking-tight">Cadastro</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold text-neutral-950 mb-8 tracking-tight">Cadastro</h2>
 
                 <EditForm Model="@registerModel" OnValidSubmit="HandleRegister">
                     <DataAnnotationsValidator/>
@@ -105,7 +105,7 @@
             </div>
 
             <!-- Rodapé (Idêntico ao Login) -->
-            <div class="flex justify-between items-center text-xs text-neutral-500 pt-10 border-t border-neutral-100 mt-10">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3 text-xs text-neutral-500 pt-8 sm:pt-10 border-t border-neutral-100 mt-8 sm:mt-10">
                 <p>&copy; 2026 - Pede Aí</p>
                 <div class="flex gap-6 items-center">
                     <a href="/contact" class="hover:text-neutral-800">Contato</a>
