@@ -12,7 +12,7 @@
             <!-- Logo -->
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#FF6B35] to-[#FF8C61] flex items-center justify-[#center] shadow-md shadow-[#FF6B35]/20 text-white font-extrabold text-xl">
-                    P
+                     P
                 </div>
                 <span class="text-2xl font-bold tracking-tight text-[#2C2A29]">Pede <span class="text-[#FF6B35]">Aí</span></span>
             </div>
@@ -28,12 +28,13 @@
 
             <!-- Ações -->
             <div class="flex items-center gap-4">
-                <button class="hidden sm:block text-sm font-bold text-[#2C2A29] hover:text-[#FF6B35] transition-colors">
+                <a href="/login" class="text-sm font-bold text-[#2C2A29] hover:text-[#FF6B35] transition-colors cursor-pointer">
                     Entrar
-                </button>
-                <a href="#demo" class="px-5 py-2.5 bg-[#FF6B35] hover:bg-[#E8551F] text-white font-semibold text-sm rounded-full shadow-lg shadow-[#FF6B35]/25 hover:shadow-xl transition-all duration-300">
-                    Criar Cardápio
                 </a>
+
+                @*<a href="#demo" class="px-5 py-2.5 bg-[#FF6B35] hover:bg-[#E8551F] text-white font-semibold text-sm rounded-full shadow-lg shadow-[#FF6B35]/25 hover:shadow-xl transition-all duration-300">
+                    Criar Cardápio
+                </a>*@
             </div>
         </div>
     </nav>
@@ -58,7 +59,7 @@
                 </h1>
 
                 <p class="text-lg sm:text-xl text-[#5A5552] max-w-2xl font-normal leading-relaxed">
-                    Aumente o faturamento da sua hamburgueria, doceria ou lanchonete. O cliente escolhe, faz a conta no seu site e o pedido chega pronto no seu Zap.
+                    Aumente o faturamento do seu estabelecimento. O cliente escolhe, faz uma conta no seu site e o pedido chega pronto no seu Whatsapp.
                 </p>
 
                 <!-- Categorias selecionáveis em C# -->
@@ -83,7 +84,7 @@
                 </div>
 
                 <!-- Social Proof -->
-                <div class="flex items-center gap-6 pt-6 border-t border-[#EADFC9]/60">
+                @* <div class="flex items-center gap-6 pt-6 border-t border-[#EADFC9]/60">
                     <div class="flex -space-x-3">
                         <div class="w-10 h-10 rounded-full border-2 border-white bg-[#FF6B35] flex items-center justify-center text-white text-xs font-bold">🍔</div>
                         <div class="w-10 h-10 rounded-full border-2 border-white bg-[#2D5A27] flex items-center justify-center text-white text-xs font-bold">🍕</div>
@@ -93,7 +94,7 @@
                         <div class="flex text-amber-500 text-sm">★★★★★</div>
                         <p class="text-xs text-[#5A5552] font-medium">+1.400 estabelecimentos vendendo diariamente</p>
                     </div>
-                </div>
+                </div> *@
             </div>
 
             <!-- Right Column: Interactive Hero Mockup -->
@@ -148,7 +149,7 @@
                         <!-- Card de WhatsApp simulado -->
                         <div class="bg-[#DCF8C6] p-3 rounded-xl border border-green-300 text-[11px] space-y-1">
                             <div class="flex items-center justify-between text-green-800 font-bold">
-                                <span>💬 Mensagem no Zap</span>
+                                <span>💬 Mensagem no Whatsapp</span>
                                 <span>Agora</span>
                             </div>
                             <p class="text-gray-700 font-mono text-[10px]">
@@ -210,7 +211,7 @@
                     <button @onclick="FinalizarPedidoSimulado" 
                             disabled="@(TotalCarrinho == 0 || SimulaçãoEnviada)"
                             class="w-full py-3 bg-[#FF6B35] disabled:bg-gray-300 hover:bg-[#E8551F] text-white font-bold rounded-xl transition-all shadow-md">
-                        @(SimulaçãoEnviada ? "Pedido Enviado ✓" : "Finalizar & Mandar Pro Zap")
+                        @(SimulaçãoEnviada ? "Pedido Enviado ✓" : "Finalizar & Mandar Pro Whatsapp")
                     </button>
                 </div>
             </div>
@@ -220,7 +221,7 @@
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <span class="w-8 h-8 rounded-full bg-[#25D366] text-white font-bold flex items-center justify-center text-sm">2</span>
-                        <span class="text-xs font-semibold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Recebido no Zap</span>
+                        <span class="text-xs font-semibold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Recebido no Whatsapp</span>
                     </div>
                     <h3 class="font-bold text-lg text-[#2C2A29] mb-2">Mensagem Formatada</h3>
 
@@ -306,13 +307,13 @@
                 <div class="space-y-6">
                     <div>
                         <label class="block text-xs font-bold text-[#5A5552] uppercase mb-2">Faturamento Mensal Estimado:</label>
-                        <input type="range" min="3000" max="80000" step="1000" @bind="FaturamentoMensal" @bind:event="oninput" class="w-full accent-[#FF6B35] h-2 bg-gray-200 rounded-lg cursor-pointer" />
+                        <input type="range" min="1000" max="10000" step="100" @bind="FaturamentoMensal" @bind:event="oninput" class="w-full accent-[#FF6B35] h-2 bg-gray-200 rounded-lg cursor-pointer" />
                         <div class="text-2xl font-extrabold text-[#FF6B35] mt-2">R$ @FaturamentoMensal.ToString("N0") /mês</div>
                     </div>
 
                     <div class="bg-[#FBF9F5] p-4 rounded-xl border border-[#EADFC9] text-xs space-y-2">
                         <div class="flex justify-between">
-                            <span>Taxa estimada de App Tradicional (15%):</span>
+                            <span>Taxa estimada de App Tradicional (18%):</span>
                             <span class="font-bold text-red-500">R$ @CustoAppTradicional.ToString("N2")</span>
                         </div>
                         <div class="flex justify-between border-t border-[#EADFC9] pt-2">
@@ -345,7 +346,8 @@
                 <button @onclick="() => PlanoAnual = !PlanoAnual" class="w-14 h-8 bg-[#2C2A29] rounded-full p-1 transition-all">
                     <div class="w-6 h-6 bg-white rounded-full transition-all @(PlanoAnual ? "translate-x-6 bg-[#FF6B35]" : "")"></div>
                 </button>
-                <span class="text-sm font-semibold @(PlanoAnual ? "text-[#FF6B35]" : "text-gray-500")">Anual <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">2 MESES GRÁTIS</span></span>
+                <span class="text-sm font-semibold @(PlanoAnual ? "text-[#FF6B35]" : "text-gray-500")">Anual</span>
+                @* <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">2 MESES GRÁTIS</span> *@
             </div>
         </div>
 
@@ -361,7 +363,7 @@
                     R$ @(PlanoAnual ? "49" : "59")<span class="text-xs font-normal text-gray-500">/mês</span>
                 </div>
                 <ul class="text-xs text-[#5A5552] space-y-3">
-                    <li class="flex items-center gap-2">✓ Até 50 produtos cadastrados</li>
+                    <li class="flex items-center gap-2">✓ Até 15 produtos cadastrados</li>
                     <li class="flex items-center gap-2">✓ Pedidos ilimitados no WhatsApp</li>
                     <li class="flex items-center gap-2">✓ Link e QR Code do Cardápio</li>
                     <li class="flex items-center gap-2">✓ Painel de Login para Clientes</li>
@@ -384,7 +386,7 @@
                     <li class="flex items-center gap-2">✓ Painel de Status do Pedido em Tempo Real</li>
                     <li class="flex items-center gap-2">✓ Opção de Retirada e Entrega Flexível</li>
                     <li class="flex items-center gap-2">✓ Relatórios de Vendas Básicos</li>
-                    <li class="flex items-center gap-2">✓ Suporte Prioritário no Zap</li>
+                    <li class="flex items-center gap-2">✓ Suporte Prioritário no Whatsapp</li>
                 </ul>
                 <button class="w-full py-3 bg-[#FF6B35] hover:bg-[#E8551F] text-white font-bold rounded-xl transition-all shadow-lg shadow-[#FF6B35]/30">Testar 7 Dias Grátis</button>
             </div>
@@ -446,7 +448,7 @@
                 <span class="text-lg font-bold text-white">Pede Aí</span>
             </div>
             <div>
-                © @DateTime.Now.Year Pede Aí Tecnologia. Todos os direitos reservados.
+                © @DateTime.Now.Year Pede Aí. Todos os direitos reservados.
             </div>
             <div class="flex gap-6">
                 <a href="#" class="hover:text-white">Termos</a>
@@ -504,8 +506,8 @@
     }
 
     // Calculadora de Economia
-    private decimal FaturamentoMensal = 25000;
-    private decimal CustoAppTradicional => FaturamentoMensal * 0.15m;
+    private decimal FaturamentoMensal = 1500;
+    private decimal CustoAppTradicional => FaturamentoMensal * 0.18m;
     private decimal EconomiaAnual => (CustoAppTradicional - 89.90m) * 12;
 
     // Toggle de Planos
@@ -547,6 +549,6 @@
         new FaqItem { Id = 1, Pergunta = "Preciso pagar comissão por cada pedido?", Resposta = "Não! No Pede Aí você paga apenas uma mensalidade fixa e nada mais. 100% do valor da venda é seu." },
         new FaqItem { Id = 2, Pergunta = "O cliente precisa baixar algum aplicativo?", Resposta = "Não! O seu cliente acessa pelo navegador do celular através do seu link ou QR Code, escolhe os produtos e faz a conta de forma ultra rápida." },
         new FaqItem { Id = 3, Pergunta = "Como o pedido chega no meu WhatsApp?", Resposta = "Quando o cliente clica em 'Finalizar Pedido', a mensagem é formatada automaticamente e enviada direto para o WhatsApp do seu estabelecimento com todos os detalhes e endereço." },
-        new FaqItem { Id = 4, Pergunta = "Como funciona o acompanhamento do pedido?", Resposta = "O cliente pode acessar o site do seu estabelecimento, criar uma conta e ver a atualização em tempo real se o pedido está sendo preparado, saiu para entrega ou se está pronto para retirada." }
+        new FaqItem { Id = 4, Pergunta = "Como funciona o acompanhamento do pedido?", Resposta = "O cliente pode acessar o site do seu estabelecimento, criar uma conta (ou não) e ver a atualização em tempo real se o pedido está sendo preparado, saiu para entrega ou se está pronto para retirada." }
     };
 }

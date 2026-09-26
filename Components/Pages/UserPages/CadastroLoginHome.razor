@@ -1,0 +1,154 @@
+﻿@page "/cadastro"
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager NavManager
+
+<div class="min-h-screen bg-neutral-100 p-4 flex items-center justify-center font-sans">
+    <div class="w-full max-w-6xl aspect-[16/10] bg-white rounded-3xl shadow-2xl flex overflow-hidden">
+        
+        <!-- Painel Esquerdo (Escuro - Identico ao Login) -->
+        <div class="w-1/2 bg-[#1c1917] p-12 flex flex-col justify-between text-neutral-300">
+            <div>
+                <p class="text-xs font-light tracking-wide opacity-80">
+                    Sua comida favorita, entregue rápido – soluções de pedido online para você.
+                </p>
+            </div>
+            
+            <div class="flex-grow flex flex-col items-center justify-center relative">
+                <!-- Círculos de fundo decorativos -->
+                <div class="absolute w-96 h-96 rounded-full border border-neutral-700 opacity-30"></div>
+                <div class="absolute w-80 h-80 rounded-full border border-neutral-700 opacity-50"></div>
+                
+                <h1 class="text-white text-6xl font-extrabold leading-tight tracking-tight text-center mb-8 relative z-10">
+                    Crie sua<br/>conta grátis
+                </h1>
+                
+                <div class="relative z-10 mt-10">
+                    <!-- Mantendo a mesma imagem do celular -->
+                    <img src="https://i.imgur.com/83uM5I9.png" alt="Pede Aí Mobile App" class="w-64 drop-shadow-2xl" />
+                </div>
+            </div>
+            
+            <div class="flex justify-center">
+                <!-- Ícone de Copyright -->
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="9.5" stroke="#404040"/>
+                    <path d="M10 6V10L12 12" stroke="#404040" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Painel Direito (Claro - Formulário de Cadastro) -->
+        <div class="w-1/2 bg-white p-12 flex flex-col">
+            <div class="flex justify-between items-center mb-10">
+                <!-- Logo Pede Aí -->
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-orange-500"></div>
+                    <span class="text-2xl font-bold text-neutral-900">Pede <span class="text-orange-600 font-extrabold">Aí</span></span>
+                </div>
+                
+                <!-- Link para Voltar ao Login -->
+                <a href="/login" class="flex items-center gap-2 text-sm text-neutral-600 hover:text-orange-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                    </svg>
+                    Já tenho conta
+                </a>
+            </div>
+
+            <div class="flex-grow flex flex-col justify-center max-w-md mx-auto w-full">
+                <h2 class="text-4xl font-bold text-neutral-950 mb-8 tracking-tight">Cadastro</h2>
+
+                <EditForm Model="@registerModel" OnValidSubmit="HandleRegister">
+                    <DataAnnotationsValidator/>
+
+                    <!-- Campo Nome Completo -->
+                    <div class="mb-4">
+                        <div class="relative">
+                            <InputText @bind-Value="registerModel.FullName" class="w-full px-5 py-3.5 border border-neutral-200 rounded-xl text-neutral-800 placeholder:text-neutral-400 focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition" id="fullName" placeholder="Nome Completo"/>
+                        </div>
+                        <ValidationMessage For="@(() => registerModel.FullName)" class="text-red-500 text-xs mt-1 ml-2" />
+                    </div>
+
+                    <!-- Campo Email -->
+                    <div class="mb-4">
+                        <div class="relative">
+                            <InputText @bind-Value="registerModel.Email" class="w-full px-5 py-3.5 border border-neutral-200 rounded-xl text-neutral-800 placeholder:text-neutral-400 focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition" id="email" placeholder="Seu melhor email" type="email"/>
+                        </div>
+                        <ValidationMessage For="@(() => registerModel.Email)" class="text-red-500 text-xs mt-1 ml-2" />
+                    </div>
+
+                    <!-- Campo Senha -->
+                    <div class="mb-4">
+                        <div class="relative">
+                            <InputText @bind-Value="registerModel.Password" class="w-full px-5 py-3.5 border border-neutral-200 rounded-xl text-neutral-800 placeholder:text-neutral-400 focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition" id="password" placeholder="Crie uma senha" type="password"/>
+                        </div>
+                        <ValidationMessage For="@(() => registerModel.Password)" class="text-red-500 text-xs mt-1 ml-2" />
+                    </div>
+
+                    <!-- Campo Confirmar Senha -->
+                    <div class="mb-8">
+                        <div class="relative">
+                            <InputText @bind-Value="registerModel.ConfirmPassword" class="w-full px-5 py-3.5 border border-neutral-200 rounded-xl text-neutral-800 placeholder:text-neutral-400 focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition" id="confirmPassword" placeholder="Confirme a senha" type="password"/>
+                        </div>
+                        <ValidationMessage For="@(() => registerModel.ConfirmPassword)" class="text-red-500 text-xs mt-1 ml-2" />
+                    </div>
+
+                    <!-- Botão de Cadastro (Mesmo estilo do Login) -->
+                    <button type="submit" 
+                            class="w-full flex items-center justify-center gap-3 py-4 rounded-full text-white font-semibold text-sm tracking-wide bg-gradient-to-r from-orange-500 via-orange-600 to-rose-500 hover:from-orange-600 hover:via-orange-700 hover:to-rose-600 shadow-lg shadow-orange-500/30 transition-all duration-300 transform hover:scale-[1.02]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                        </svg>
+                        Criar Conta
+                    </button>
+                </EditForm>
+            </div>
+
+            <!-- Rodapé (Idêntico ao Login) -->
+            <div class="flex justify-between items-center text-xs text-neutral-500 pt-10 border-t border-neutral-100 mt-10">
+                <p>&copy; 2026 - Pede Aí</p>
+                <div class="flex gap-6 items-center">
+                    <a href="/contact" class="hover:text-neutral-800">Contato</a>
+                    @* <button class="flex items-center gap-1.5 hover:text-neutral-800">
+                        Português
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button> *@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private RegisterModel registerModel = new RegisterModel();
+
+    private void HandleRegister()
+    {
+        // 1. LÓGICA DE CADASTRO (Enviar para API, etc)
+        Console.WriteLine($"Cadastro solicitado para: {registerModel.Email}");
+
+        // 2. NAVEGAÇÃO PÓS-CADASTRO
+        // Após cadastrar com sucesso, leva o usuário para o Dashboard ou Login
+        NavManager.NavigateTo("/dashboard");
+    }
+
+    public class RegisterModel
+    {
+        [Required(ErrorMessage = "O nome completo é obrigatório")]
+        public string FullName { get; set; }
+
+        [Required(ErrorMessage = "O email é obrigatório")]
+        [EmailAddress(ErrorMessage = "Informe um email válido")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "A senha é obrigatória")]
+        [MinLength(6, ErrorMessage = "A senha deve ter pelo menos 6 caracteres")]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "A confirmação de senha é obrigatória")]
+        [Compare("Password", ErrorMessage = "As senhas não conferem")]
+        public string ConfirmPassword { get; set; }
+    }
+}

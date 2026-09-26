@@ -1,0 +1,138 @@
+﻿@page "/login"
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager NavManager
+
+<PageTitle>Login - Pede Aí</PageTitle>
+
+<div class="min-h-screen bg-neutral-100 p-4 flex items-center justify-center font-sans">
+    <div class="w-full max-w-6xl aspect-[16/10] bg-white rounded-3xl shadow-2xl flex overflow-hidden">
+        
+        <!-- Painel Esquerdo (Escuro) -->
+        <div class="w-1/2 bg-[#1c1917] p-12 flex flex-col justify-between text-neutral-300">
+            <div>
+                <p class="text-xs font-light tracking-wide opacity-80">
+                    Sua comida favorita, rápida na sua mão – soluções de pedido online para você.
+                </p>
+            </div>
+            
+            <div class="flex-grow flex flex-col items-center justify-center relative">
+                <!-- Círculos de fundo decorativos -->
+                <div class="absolute w-96 h-96 rounded-full border border-neutral-700 opacity-30"></div>
+                <div class="absolute w-80 h-80 rounded-full border border-neutral-700 opacity-50"></div>
+                
+                <h1 class="text-white text-6xl font-extrabold leading-tight tracking-tight text-center mb-8 relative z-10">
+                    Acompanhe<br/>seu pedido
+                </h1>
+                
+                @*<div class="relative z-10 mt-10">
+                    <img src="https://images.unsplash.com/photo-1585007600263-71228e40c8d1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pede Aí Mobile App" class="w-64 drop-shadow-2xl" />
+                </div>*@
+            </div>
+            
+            <div class="flex justify-center">
+                <!-- Ícone de Copyright da Imagem -->
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="9.5" stroke="#404040"/>
+                    <path d="M10 6V10L12 12" stroke="#404040" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Painel Direito (Claro) -->
+        <div class="w-1/2 bg-white p-12 flex flex-col">
+            <div class="flex justify-between items-center mb-16">
+                <!-- Logo Pede Aí (Estilizado como Payoneer) -->
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-orange-500"></div>
+                    <span class="text-2xl font-bold text-neutral-900">Pede <span class="text-orange-600 font-extrabold">Aí</span></span>
+                </div>
+                
+                <!-- Link de Cadastro -->
+                <a href="/cadastro" class="flex items-center gap-2 text-sm text-neutral-600 hover:text-orange-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                    </svg>
+                    Cadastre-se
+                </a>
+            </div>
+
+            <div class="flex-grow flex flex-col justify-center max-w-md mx-auto w-full">
+                <h2 class="text-4xl font-bold text-neutral-950 mb-10 tracking-tight">Login</h2>
+
+                <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+                    <DataAnnotationsValidator/>
+
+                    <!-- Campo Email -->
+                    <div class="mb-5">
+                        <div class="relative">
+                            <InputText @bind-Value="loginModel.Email" class="w-full px-5 py-4 border border-neutral-200 rounded-xl text-neutral-800 placeholder:text-neutral-400 focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition" id="email" placeholder="Email ou Usuário"/>
+                        </div>
+                        <ValidationMessage For="@(() => loginModel.Email)" class="text-red-500 text-xs mt-1 ml-2" />
+                    </div>
+
+                    <!-- Campo Senha -->
+                    <div class="mb-3">
+                        <div class="relative">
+                            <InputText @bind-Value="loginModel.Password" class="w-full px-5 py-4 border border-neutral-200 rounded-xl text-neutral-800 placeholder:text-neutral-400 focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition" id="password" placeholder="Senha" type="password"/>
+                            <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600">
+                                <!-- Ícone de Olho (Ocultar) -->
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <ValidationMessage For="@(() => loginModel.Password)" class="text-red-500 text-xs mt-1 ml-2" />
+                    </div>
+
+                    <!-- Esqueceu a senha -->
+                    <div class="flex justify-end mb-8">
+                        <a href="/forgot-password" class="text-xs text-orange-600 hover:text-orange-700 font-medium">Esqueceu a senha?</a>
+                    </div>
+
+                    <!-- Botão de Login (Gradiente da Imagem) -->
+                    <button type="submit" 
+                            class="w-full flex items-center justify-center gap-3 py-4 rounded-full text-white font-semibold text-sm tracking-wide bg-gradient-to-r from-orange-500 via-orange-600 to-rose-500 hover:from-orange-600 hover:via-orange-700 hover:to-rose-600 shadow-lg shadow-orange-500/30 transition-all duration-300 transform hover:scale-[1.02]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                        </svg>
+                        Entrar
+                    </button>
+                </EditForm>
+            </div>
+
+            <!-- Rodapé -->
+            <div class="flex justify-between items-center text-xs text-neutral-500 pt-10 border-t border-neutral-100 mt-10">
+                <p>&copy; 2026 - Pede Aí</p>
+                <div class="flex gap-6 items-center">
+                    <a href="/contact" class="hover:text-neutral-800">Contato</a>
+                    @* <button class="flex items-center gap-1.5 hover:text-neutral-800">
+                        Português
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button> *@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginModel loginModel = new LoginModel();
+
+    private void HandleLogin()
+    {
+        // Lógica de autenticação aqui
+        Console.WriteLine($"Tentativa de login para: {loginModel.Email}");
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "O email ou usuário é obrigatório")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "A senha é obrigatória")]
+        [MinLength(6, ErrorMessage = "A senha deve ter pelo menos 6 caracteres")]
+        public string Password { get; set; }
+    }
+}
