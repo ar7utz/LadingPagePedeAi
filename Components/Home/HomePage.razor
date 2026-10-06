@@ -22,15 +22,15 @@
                 <a href="#como-funciona" class="hover:text-[#FF6B35] transition-colors">Como Funciona</a>
                 <a href="#demo" class="hover:text-[#FF6B35] transition-colors">Simulador</a>
                 <a href="#calculadora" class="hover:text-[#FF6B35] transition-colors">Economia</a>
-                <a href="#precos" class="hover:text-[#FF6B35] transition-colors">Planos</a>
+                @* <a href="#precos" class="hover:text-[#FF6B35] transition-colors">Planos</a> *@
                 <a href="#faq" class="hover:text-[#FF6B35] transition-colors">Dúvidas</a>
             </div>
 
             <!-- Ações -->
             <div class="flex items-center gap-4">
-                <a href="/login" class="text-sm font-bold text-[#2C2A29] hover:text-[#FF6B35] transition-colors cursor-pointer">
+                @* <a href="/login" class="text-sm font-bold text-[#2C2A29] hover:text-[#FF6B35] transition-colors cursor-pointer">
                     Entrar
-                </a>
+                </a> *@
 
                 @*<a href="#demo" class="px-5 py-2.5 bg-[#FF6B35] hover:bg-[#E8551F] text-white font-semibold text-sm rounded-full shadow-lg shadow-[#FF6B35]/25 hover:shadow-xl transition-all duration-300">
                     Criar Cardápio
@@ -294,8 +294,9 @@
         </div>
     </section>
 
+
     <!-- CALCULADORA DE ECONOMIA DA PLATAFORMA -->
-    <section id="calculadora" class="py-20 px-6 bg-[#FBF9F5]">
+    <section id="calculadora" class="py-20 px-6 bg-[#E3EBD3]">
         <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 md:p-12 border border-[#EADFC9] shadow-lg">
             <div class="text-center space-y-3 mb-8">
                 <span class="text-xs font-bold text-[#2D5A27] bg-[#E3EBD3] px-3 py-1 rounded-full uppercase">Calculadora de Economia</span>
@@ -335,23 +336,27 @@
     </section>
 
     <!-- PREÇOS / PLANOS -->
-    <section id="precos" class="py-20 px-6 bg-white border-t border-[#EADFC9]">
+    <section id="precos" class="py-20 px-6 bg-[#FBF9F5] border-t border-[#EADFC9]">
         <div class="max-w-6xl mx-auto text-center space-y-4 mb-12">
             <span class="text-xs font-extrabold text-[#FF6B35] uppercase tracking-widest">Planos Transparentes</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-[#2C2A29]">Sem comissão por venda. Zero surpresas.</h2>
+
+            <p class="">Utilize o sistema Pede Aí para gerenciar seu negócio sem preocupações com comissões e taxas ocultas.</p>
+
+            <img src="/Img/imgPlanos.jpg" alt="Planos Pede Aí" class="mx-auto mt-6 w-80 h-1\.5" asp-append-version="true" />
             
             <!-- Toggle Anual / Mensal -->
-            <div class="flex items-center justify-center gap-3 pt-4">
+            @* <div class="flex items-center justify-center gap-3 pt-4">
                 <span class="text-sm font-semibold @(!PlanoAnual ? "text-[#FF6B35]" : "text-gray-500")">Mensal</span>
                 <button @onclick="() => PlanoAnual = !PlanoAnual" class="w-14 h-8 bg-[#2C2A29] rounded-full p-1 transition-all">
                     <div class="w-6 h-6 bg-white rounded-full transition-all @(PlanoAnual ? "translate-x-6 bg-[#FF6B35]" : "")"></div>
                 </button>
                 <span class="text-sm font-semibold @(PlanoAnual ? "text-[#FF6B35]" : "text-gray-500")">Anual</span>
-                @* <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">2 MESES GRÁTIS</span> *@
-            </div>
+                 <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">2 MESES GRÁTIS</span> 
+            </div> *@
         </div>
 
-        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+        @* <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
             
             <!-- Plano Start -->
             <div class="bg-[#FBF9F5] p-8 rounded-3xl border border-[#EADFC9] space-y-6">
@@ -403,17 +408,16 @@
                 <ul class="text-xs text-[#5A5552] space-y-3">
                     <li class="flex items-center gap-2">✓ Tudo do Plano Profissional</li>
                     <li class="flex items-center gap-2">✓ Múltiplos Estabelecimentos</li>
-                    <li class="flex items-center gap-2">✓ Domínio Personalizado (.com.br)</li>
                     <li class="flex items-center gap-2">✓ API e Integrações Customizadas</li>
                 </ul>
                 <button class="w-full py-3 border border-[#2C2A29] text-[#2C2A29] font-bold rounded-xl hover:bg-[#2C2A29] hover:text-white transition-all">Falar com Consultor</button>
             </div>
 
-        </div>
+        </div> *@
     </section>
 
     <!-- FAQ ACCORDION EM C# -->
-    <section id="faq" class="py-20 px-6 bg-[#FBF9F5]">
+    <section id="faq" class="py-20 px-6 bg-white border-t border-[#EADFC9]">
         <div class="max-w-3xl mx-auto space-y-6">
             <div class="text-center space-y-2 mb-8">
                 <h2 class="text-3xl font-extrabold text-[#2C2A29]">Perguntas Frequentes</h2>
